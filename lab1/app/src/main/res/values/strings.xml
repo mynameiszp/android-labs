@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Lab1</string>
+    <string name="choose_phone_size">Choose phone size:</string>
+    <string name="choose_the_brand">Choose the brand</string>
+    <string name="result">Result:</string>
+    <string name="ok">OK</string>
+    <string name="google">Google</string>
+    <string name="apple">Apple</string>
+    <string name="samsung">Samsung</string>
+    <string-array name="phoneTypes">
+        <item>4 inches</item>
+        <item>5 inches</item>
+        <item>6 inches</item>
+        <item>7 inches</item>
+    </string-array>
+</resources>
