@@ -52,7 +52,7 @@ public class DBActivity extends AppCompatActivity {
         });
         dbHelper = new DBHelper(this);
         db = dbHelper.getWritableDatabase();
-        showData();
+        getData();
     }
 
     @SuppressLint("RestrictedApi")
@@ -60,6 +60,7 @@ public class DBActivity extends AppCompatActivity {
         Log.d(LOG_TAG, "Clear phones");
         int clearCount = db.delete("phones", null, null);
         Log.d(LOG_TAG, "deleted rows count = " + clearCount);
+        finish();
     }
 
     private void backToMainMenu() {
@@ -67,7 +68,7 @@ public class DBActivity extends AppCompatActivity {
     }
 
     @SuppressLint("RestrictedApi")
-    private void showData() {
+    private void getData() {
         TableLayout tableLayout = findViewById(R.id.table);
         Log.d(LOG_TAG, " Rows in phones:");
         Cursor cursor = db.query("phones", null, null, null, null, null, null);
@@ -76,23 +77,36 @@ public class DBActivity extends AppCompatActivity {
             int brandColIndex = cursor.getColumnIndex("brand");
             int sizeColIndex = cursor.getColumnIndex("size");
             do {
-                TableRow tableRow = new TableRow(this);
-                for (int i = 0; i < cursor.getColumnCount(); i++) {
-                    TextView textView = new TextView(this);
-                    textView.setText(cursor.getString(i));
-                    textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f);
-                    textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-                    tableRow.addView(textView);
-                }
-                tableLayout.addView(tableRow);
-
+                displayData(tableLayout, cursor);
                 Log.d(LOG_TAG,
                         "ID = " + cursor.getInt(idColIndex) +
                                 ", brand = " + cursor.getString(brandColIndex) +
                                 ", size = " + cursor.getString(sizeColIndex));
             } while (cursor.moveToNext());
-        } else
+        } else {
             Log.d(LOG_TAG, "0 rows");
+            displayNoData(tableLayout);
+        }
         cursor.close();
+    }
+
+    private void displayData(TableLayout tableLayout, Cursor cursor) {
+        TableRow tableRow = new TableRow(this);
+        for (int i = 0; i < cursor.getColumnCount(); i++) {
+            TextView textView = new TextView(this);
+            textView.setText(cursor.getString(i));
+            textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f);
+            textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            tableRow.addView(textView);
+        }
+        tableLayout.addView(tableRow);
+    }
+
+    private void displayNoData(TableLayout tableLayout) {
+        TextView textView = new TextView(this);
+        textView.setText("No data found");
+        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 26f);
+        textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        tableLayout.addView(textView);
     }
 }
