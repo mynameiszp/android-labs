@@ -151,4 +151,8 @@
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
     <string name="clear">Clear</string>
+    <string name="phone_data">Phone data</string>
+    <string name="id">Id</string>
+    <string name="brand">Brand</string>
+    <string name="size">Size</string>
 </resources>

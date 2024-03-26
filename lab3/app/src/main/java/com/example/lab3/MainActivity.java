@@ -93,28 +93,6 @@ public class MainActivity extends AppCompatActivity {
         long rowID = db.insert("phones", null, cv);
         Log.d(LOG_TAG, "row inserted, ID = " + rowID);
         Toast.makeText(this, "Your data was successfully added to database", Toast.LENGTH_SHORT).show();
-//            case R.id.btnRead:
-//                Log.d(LOG_TAG, " Rows in phones:");
-//                Cursor c = db.query("phones", null, null, null, null, null, null);
-//                if (c.moveToFirst()) {
-//                    int idColIndex = c.getColumnIndex("id");
-//                    int brandColIndex = c.getColumnIndex("brand");
-//                    int sizeColIndex = c.getColumnIndex("size");
-//                    do {
-//                        Log.d(LOG_TAG,
-//                                "ID = " + c.getInt(idColIndex) +
-//                                        ", brand = " + c.getString(brandColIndex) +
-//                                        ", size = " + c.getString(sizeColIndex));
-//                    } while (c.moveToNext());
-//                } else
-//                    Log.d(LOG_TAG, "0 rows");
-//                c.close();
-//                break;
-//            case R.id.btnClear:
-//                Log.d(LOG_TAG, "Clear phones");
-//                int clearCount = db.delete("phones", null, null);
-//                Log.d(LOG_TAG, "deleted rows count = " + clearCount);
-//                break;
         dbHelper.close();
     }
 }

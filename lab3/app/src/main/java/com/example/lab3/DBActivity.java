@@ -7,8 +7,12 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -64,20 +68,31 @@ public class DBActivity extends AppCompatActivity {
 
     @SuppressLint("RestrictedApi")
     private void showData() {
+        TableLayout tableLayout = findViewById(R.id.table);
         Log.d(LOG_TAG, " Rows in phones:");
-        Cursor c = db.query("phones", null, null, null, null, null, null);
-        if (c.moveToFirst()) {
-            int idColIndex = c.getColumnIndex("id");
-            int brandColIndex = c.getColumnIndex("brand");
-            int sizeColIndex = c.getColumnIndex("size");
+        Cursor cursor = db.query("phones", null, null, null, null, null, null);
+        if (cursor.moveToFirst()) {
+            int idColIndex = cursor.getColumnIndex("id");
+            int brandColIndex = cursor.getColumnIndex("brand");
+            int sizeColIndex = cursor.getColumnIndex("size");
             do {
+                TableRow tableRow = new TableRow(this);
+                for (int i = 0; i < cursor.getColumnCount(); i++) {
+                    TextView textView = new TextView(this);
+                    textView.setText(cursor.getString(i));
+                    textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f);
+                    textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                    tableRow.addView(textView);
+                }
+                tableLayout.addView(tableRow);
+
                 Log.d(LOG_TAG,
-                        "ID = " + c.getInt(idColIndex) +
-                                ", brand = " + c.getString(brandColIndex) +
-                                ", size = " + c.getString(sizeColIndex));
-            } while (c.moveToNext());
+                        "ID = " + cursor.getInt(idColIndex) +
+                                ", brand = " + cursor.getString(brandColIndex) +
+                                ", size = " + cursor.getString(sizeColIndex));
+            } while (cursor.moveToNext());
         } else
             Log.d(LOG_TAG, "0 rows");
-        c.close();
+        cursor.close();
     }
 }
