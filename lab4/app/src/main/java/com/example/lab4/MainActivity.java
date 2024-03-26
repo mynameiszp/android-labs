@@ -1,97 +1,49 @@
 package com.example.lab4;
 
-import static androidx.core.content.PackageManagerCompat.LOG_TAG;
-
-import android.annotation.SuppressLint;
-import android.content.ContentValues;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
+import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button okButton;
-    private Button backButton;
-    private Button openDBButton;
-    private ChoiceFragment choiceFragment;
-    private ResultFragment resultFragment;
-    private DBHelper dbHelper;
+    private Intent intentAudio;
+    private Intent intentVideo;
 
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        choiceFragment = new ChoiceFragment();
-        okButton = findViewById(R.id.button);
-        okButton.setOnClickListener(new View.OnClickListener() {
+        Button audioButton = findViewById(R.id.audioButton);
+        audioButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (choiceFragment.getResult().isPresent()) {
-                    openResult(choiceFragment.getResult().get());
-                    addToDB();
-                }
+                audioPlay(v);
             }
         });
-        backButton = findViewById(R.id.cancel_button);
-        backButton.setOnClickListener(new View.OnClickListener() {
+        Button videoButton = findViewById(R.id.videoButton);
+        videoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                backToChoiceMenu();
+                videoPlay(v);
             }
         });
-        openDBButton = findViewById(R.id.openDB_button);
-        openDBButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, DBActivity.class);
-                startActivity(intent);
-            }
-        });
-        dbHelper = new DBHelper(this);
-        openChoiceMenu();
     }
 
-    private void openChoiceMenu() {
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.fragment1, choiceFragment)
-                .addToBackStack(null)
-                .commit();
-        backButton.setVisibility(View.INVISIBLE);
-        okButton.setVisibility(View.VISIBLE);
+    public void audioPlay(View view) {
+        if(intentAudio ==null)
+            intentAudio =new Intent(this,AudioActivity .class);
+        startActivity(intentAudio);
     }
 
-    private void openResult(String result) {
-        resultFragment = new ResultFragment(result);
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment1, resultFragment)
-                .addToBackStack(null)
-                .commit();
-        backButton.setVisibility(View.VISIBLE);
-        okButton.setVisibility(View.INVISIBLE);
-    }
-
-    private void backToChoiceMenu() {
-        getSupportFragmentManager().popBackStack();
-        backButton.setVisibility(View.INVISIBLE);
-        okButton.setVisibility(View.VISIBLE);
-        onResume();
-    }
-
-    @SuppressLint("RestrictedApi")
-    private void addToDB() {
-        ContentValues cv = new ContentValues();
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-        Log.d(LOG_TAG, " Insert in phones:");
-        cv.put("brand", choiceFragment.getBrand());
-        cv.put("size", choiceFragment.getPhoneType());
-        long rowID = db.insert("phones", null, cv);
-        Log.d(LOG_TAG, "row inserted, ID = " + rowID);
-        Toast.makeText(this, "Your data was successfully added to database", Toast.LENGTH_SHORT).show();
-        dbHelper.close();
+    public void videoPlay(View view) {
+        if (intentVideo == null)
+            intentVideo = new Intent(this, VideoActivity.class);
+        startActivity(intentVideo);
     }
 }
