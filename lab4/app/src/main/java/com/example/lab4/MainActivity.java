@@ -23,27 +23,27 @@ public class MainActivity extends AppCompatActivity {
         audioButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                audioPlay(v);
+                audioPlay();
             }
         });
         Button videoButton = findViewById(R.id.videoButton);
         videoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                videoPlay(v);
+                videoPlay();
             }
         });
     }
 
-    public void audioPlay(View view) {
-        if(intentAudio ==null)
-            intentAudio =new Intent(this,AudioActivity .class);
+    public void audioPlay() {
+        if (intentAudio == null)
+            intentAudio = new Intent(this, AudioSourceActivity.class);
         startActivity(intentAudio);
     }
 
-    public void videoPlay(View view) {
+    public void videoPlay() {
         if (intentVideo == null)
-            intentVideo = new Intent(this, VideoActivity.class);
+            intentVideo = new Intent(this, VideoSourceActivity.class);
         startActivity(intentVideo);
     }
 }

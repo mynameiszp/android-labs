@@ -5,4 +5,10 @@
     <string name="play">PLAY</string>
     <string name="pause">PAUSE</string>
     <string name="stop">STOP</string>
+    <string name="play_default_video">Play default video</string>
+    <string name="play_video_from_url">Play video from url</string>
+    <string name="play_video_from_storage">Play video from storage</string>
+    <string name="play_default_audio">Play default audio</string>
+    <string name="play_audio_from_url">Play audio from url</string>
+    <string name="play_audio_from_storage">Play audio from storage</string>
 </resources>

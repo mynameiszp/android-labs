@@ -1,12 +1,16 @@
 package com.example.lab4;
 
+import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.Objects;
 
 public class AudioActivity extends AppCompatActivity {
 
@@ -40,7 +44,20 @@ public class AudioActivity extends AppCompatActivity {
 
     public void play() {
         if (player == null) {
-            player = MediaPlayer.create(this, R.raw.city_of_stars);
+            String type = getIntent().getStringExtra("audioType");
+            if (Objects.requireNonNull(type).equals("default")) {
+                player = MediaPlayer.create(this, R.raw.city_of_stars);
+            } else {
+                try {
+                    player = new MediaPlayer();
+                    player.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                    player.setDataSource(this, Uri.parse(getIntent().getStringExtra("audioUrl"))); // replace with your audio file URL
+                    player.prepare();
+                    player.start();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
             player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 public void onCompletion(MediaPlayer mp) {
                     stopPlayer();
@@ -60,7 +77,7 @@ public class AudioActivity extends AppCompatActivity {
         if (player != null) {
             player.release();
             player = null;
-            Toast.makeText(this, "MediaPlayer released", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "MediaPlayer released", Toast.LENGTH_SHORT).show();
         }
     }
 
