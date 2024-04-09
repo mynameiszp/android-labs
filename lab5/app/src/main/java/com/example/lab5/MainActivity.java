@@ -17,10 +17,10 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
-    private TextView hPaValue;
+    private TextView hPaValue, temperatureValue;
     private ImageView pressurePointer;
     private SensorManager sensorManager;
-    private Sensor pressureSensor;
+    private Sensor pressureSensor, temperatureSensor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,21 +33,25 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             return insets;
         });
         hPaValue = findViewById(R.id.hPa);
+        temperatureValue = findViewById(R.id.tempValue);
         pressurePointer = findViewById(R.id.pointer);
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         pressureSensor = sensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE);
+        temperatureSensor = sensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         sensorManager.registerListener(this, pressureSensor, SensorManager.SENSOR_DELAY_NORMAL);
+        sensorManager.registerListener(this, temperatureSensor, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         sensorManager.unregisterListener(this, pressureSensor);
+        sensorManager.unregisterListener(this, temperatureSensor);
     }
 
     @Override
@@ -56,6 +60,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             float pressure = event.values[0];
             hPaValue.setText(String.format("%.1f hPa", pressure));
             pressurePointer.setRotation(pressure * 270 / 1100);
+        } else if(temperatureSensor == event.sensor){
+            float temperature = event.values[0];
+            temperatureValue.setText(String.format("%.1f °", temperature));
         }
     }
 

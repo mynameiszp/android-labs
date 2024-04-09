@@ -13,15 +13,16 @@
         android:layout_height="wrap_content"
         android:fontFamily="cursive"
         android:text="@string/barometer"
+        android:textAlignment="center"
         android:textAllCaps="false"
-        android:textSize="34sp"
+        android:textSize="36sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/scale"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.641" />
+        app:layout_constraintVertical_bias="0.679" />
 
     <ImageView
         android:id="@+id/scale"
@@ -52,10 +53,42 @@
         android:layout_marginBottom="20dp"
         android:fontFamily="cursive"
         android:text="@string/hpa"
+        android:textAlignment="center"
         android:textAllCaps="false"
         android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/scale"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/temperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="cursive"
+        android:text="@string/temperature"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tempValue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scale"
+        app:layout_constraintVertical_bias="0.623" />
+
+    <TextView
+        android:id="@+id/tempValue"
+        android:layout_width="155dp"
+        android:layout_height="53dp"
+        android:layout_marginBottom="104dp"
+        android:fontFamily="cursive"
+        android:text="°"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

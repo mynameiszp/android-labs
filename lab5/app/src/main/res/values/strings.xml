@@ -3,4 +3,5 @@
     <string name="degree">Degree:</string>
     <string name="barometer">Barometer</string>
     <string name="hpa">hPa</string>
+    <string name="temperature">Temperature</string>
 </resources>
