@@ -1,19 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#AEABAB"
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/news"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_above="@+id/news1"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="150dp"
+        android:layout_marginEnd="150dp"
+        android:layout_marginBottom="34dp"
+        android:text="@string/news"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="34sp"
+        android:textStyle="bold|italic" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:id="@+id/news1"
+        android:layout_width="382dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/news2"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="14dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginBottom="34dp"
+        android:backgroundTint="#AEE8E8E8"
+        android:text="@string/flat_secretly_turned_into_fantasy_world"
+        android:textColor="#4C4A4A"
+        android:textSize="20sp"
+        app:cornerRadius="10dip" />
+
+    <Button
+        android:id="@+id/news2"
+        android:layout_width="382dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/news3"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="14dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginBottom="34dp"
+        android:backgroundTint="#AEE8E8E8"
+        android:text="@string/tiny_sicilian_island_giving_away_goats"
+        android:textColor="#4C4A4A"
+        android:textSize="20sp"
+        app:cornerRadius="10dip" />
+
+    <Button
+        android:id="@+id/news3"
+        android:layout_width="382dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:backgroundTint="#AEE8E8E8"
+        android:text="@string/baseball_team_accused_of_fat_shaming"
+        android:textColor="#4C4A4A"
+        android:textSize="20sp"
+        app:cornerRadius="10dip" />
+
+    <Button
+        android:id="@+id/news4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/news3"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="39dp"
+        android:layout_marginEnd="14dp"
+        android:backgroundTint="#AEE8E8E8"
+        android:text="@string/waiters_and_waitresses_race_through_streets_of_paris"
+        android:textColor="#4C4A4A"
+        android:textSize="20sp"
+        app:cornerRadius="10dip" />
+
+    <TextView
+        android:id="@+id/more"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/news4"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="10dp"
+        android:text="@string/to_be_continued"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="34sp"
+        android:textStyle="bold|italic" />
+</RelativeLayout>

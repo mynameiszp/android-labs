@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Lab6</string>
+    <string name="news">NEWS</string>
+    <string name="flat_secretly_turned_into_fantasy_world">Flat secretly turned into \'fantasy world\'</string>
+    <string name="tiny_sicilian_island_giving_away_goats">Tiny Sicilian island giving away goats</string>
+    <string name="baseball_team_accused_of_fat_shaming">Baseball team accused of fat-shaming</string>
+    <string name="waiters_and_waitresses_race_through_streets_of_paris">Waiters and waitresses race through streets of Paris</string>
+    <string name="to_be_continued">To be continued...</string>
 </resources>
