@@ -28,4 +28,10 @@ public class VideoActivity extends AppCompatActivity {
         mediaController.setAnchorView(videoView);
         videoView.start();
     }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        videoView.stopPlayback();
+    }
 }

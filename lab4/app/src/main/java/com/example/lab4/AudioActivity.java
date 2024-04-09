@@ -81,6 +81,7 @@ public class AudioActivity extends AppCompatActivity {
         }
     }
 
+    @Override
     protected void onStop() {
         super.onStop();
         stopPlayer();

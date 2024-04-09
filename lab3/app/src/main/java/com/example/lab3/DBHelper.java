@@ -12,6 +12,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public DBHelper(Context context) {
         super(context, "phoneDB", null, 1);
     }
+
     @SuppressLint("RestrictedApi")
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -21,6 +22,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 + "brand text,"
                 + "size text" + ");");
     }
+
     @Override
     public void onUpgrade(SQLiteDatabase db,
                           int oldVersion, int newVersion) {
