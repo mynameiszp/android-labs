@@ -43,24 +43,28 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     @Override
     protected void onResume() {
         super.onResume();
-        sensorManager.registerListener(this, pressureSensor, SensorManager.SENSOR_DELAY_NORMAL);
-        sensorManager.registerListener(this, temperatureSensor, SensorManager.SENSOR_DELAY_NORMAL);
+        if (pressureSensor != null && temperatureSensor != null) {
+            sensorManager.registerListener(this, pressureSensor, SensorManager.SENSOR_DELAY_NORMAL);
+            sensorManager.registerListener(this, temperatureSensor, SensorManager.SENSOR_DELAY_NORMAL);
+        }
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        sensorManager.unregisterListener(this, pressureSensor);
-        sensorManager.unregisterListener(this, temperatureSensor);
+        if (pressureSensor != null && temperatureSensor != null) {
+            sensorManager.unregisterListener(this, pressureSensor);
+            sensorManager.unregisterListener(this, temperatureSensor);
+        }
     }
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        if (pressureSensor == event.sensor){
+        if (pressureSensor == event.sensor) {
             float pressure = event.values[0];
             hPaValue.setText(String.format("%.1f hPa", pressure));
             pressurePointer.setRotation(pressure * 270 / 1100);
-        } else if(temperatureSensor == event.sensor){
+        } else if (temperatureSensor == event.sensor) {
             float temperature = event.values[0];
             temperatureValue.setText(String.format("%.1f °", temperature));
         }
