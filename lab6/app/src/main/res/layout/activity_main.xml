@@ -61,6 +61,8 @@
         android:layout_width="382dp"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:layout_marginStart="14dp"
+        android:layout_marginEnd="14dp"
         android:backgroundTint="#AEE8E8E8"
         android:text="@string/baseball_team_accused_of_fat_shaming"
         android:textColor="#4C4A4A"

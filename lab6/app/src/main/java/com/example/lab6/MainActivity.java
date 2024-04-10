@@ -1,5 +1,6 @@
 package com.example.lab6;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -16,7 +17,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
     private Button newsOne, newsTwo, newsThree, newsFour;
-    private WebView webView;
+    private Intent webPageIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,23 +30,7 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
         setNews();
-    }
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if ((keyCode == KeyEvent.KEYCODE_BACK) && webView.canGoBack()) {
-            webView.goBack();
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
-    }
-
-    private void setWebView(String url) {
-        webView.setWebViewClient(new WebViewClient());
-        WebSettings webSettings = webView.getSettings();
-        webSettings.setJavaScriptEnabled(true);
-        webView.loadUrl(url);
-        setContentView(webView);
+        webPageIntent = new Intent(MainActivity.this, WebPageActivity.class);
     }
 
     private void setNews() {
@@ -53,29 +38,32 @@ public class MainActivity extends AppCompatActivity {
         newsTwo = findViewById(R.id.news2);
         newsThree = findViewById(R.id.news3);
         newsFour = findViewById(R.id.news4);
-        webView = new WebView(this);
         newsOne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setWebView("https://news.sky.com/story/ron-gittins-fantasy-world-flat-secretly-converted-by-tenant-receives-grade-ii-listed-status-13108252");
+                webPageIntent.putExtra("url", "https://news.sky.com/story/ron-gittins-fantasy-world-flat-secretly-converted-by-tenant-receives-grade-ii-listed-status-13108252");
+                startActivity(webPageIntent);
             }
         });
         newsTwo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setWebView("https://news.sky.com/story/italy-tiny-sicilian-island-giving-away-goats-as-tensions-grow-over-rapidly-expanding-animal-population-13107661");
+                webPageIntent.putExtra("url", "https://news.sky.com/story/italy-tiny-sicilian-island-giving-away-goats-as-tensions-grow-over-rapidly-expanding-animal-population-13107661");
+                startActivity(webPageIntent);
             }
         });
         newsThree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setWebView("https://news.sky.com/story/baseball-team-accused-of-fat-shaming-after-naming-mascot-ozempig-after-weight-loss-drug-13104290");
+                webPageIntent.putExtra("url", "https://news.sky.com/story/baseball-team-accused-of-fat-shaming-after-naming-mascot-ozempig-after-weight-loss-drug-13104290");
+                startActivity(webPageIntent);
             }
         });
         newsFour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setWebView("https://news.sky.com/story/waiters-and-waitresses-race-through-streets-of-paris-for-first-time-in-13-years-ahead-of-olympics-13101526");
+                webPageIntent.putExtra("url", "https://news.sky.com/story/waiters-and-waitresses-race-through-streets-of-paris-for-first-time-in-13-years-ahead-of-olympics-13101526");
+                startActivity(webPageIntent);
             }
         });
     }
